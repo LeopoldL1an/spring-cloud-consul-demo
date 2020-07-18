@@ -1,0 +1,30 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: platform-consumer
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}
+        health-check-path: /actuator/health
+        health-check-interval: 3s
+  #  zipkin:
+#    base-url: localhost:9411
+#    discoveryClientEnabled: true
+#  sleuth:
+#    sampler:
+#      probability: 0.1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  level:
+    com.butterfly.platform: debug
+feign:
+  hystrix:
+    enabled: true

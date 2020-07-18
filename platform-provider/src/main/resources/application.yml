@@ -1,0 +1,22 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: platform-provider
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}
+        health-check-path: /actuator/health
+        health-check-interval: 3s
+    loadbalancer:
+      cache:
+        enabled: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
